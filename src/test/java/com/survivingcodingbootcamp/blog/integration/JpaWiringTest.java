@@ -1,7 +1,9 @@
 package com.survivingcodingbootcamp.blog.integration;
 
+import com.survivingcodingbootcamp.blog.model.Hashtag;
 import com.survivingcodingbootcamp.blog.model.Post;
 import com.survivingcodingbootcamp.blog.model.Topic;
+//import com.survivingcodingbootcamp.blog.storage.repository.HashtagRepository;
 import com.survivingcodingbootcamp.blog.storage.repository.PostRepository;
 import com.survivingcodingbootcamp.blog.storage.repository.TopicRepository;
 import org.junit.jupiter.api.Test;
@@ -13,6 +15,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 public class JpaWiringTest {
+//    @Autowired
+//    HashtagRepository hashtagRepo;
     @Autowired
     private TopicRepository topicRepo;
     @Autowired
@@ -25,9 +29,9 @@ public class JpaWiringTest {
         Topic testTopic = new Topic("Name");
         topicRepo.save(testTopic);
 
-        Post testPost1 = new Post("Title", testTopic, "Content");
+        Post testPost1 = new Post("Title", "An author", testTopic, "Content", "fascinating");
         postRepo.save(testPost1);
-        Post testPost2 = new Post("Another Title", testTopic, "Content");
+        Post testPost2 = new Post("Another Title", "Another author", testTopic, "Content", "riveting");
         postRepo.save(testPost2);
 
         entityManager.flush();
@@ -35,6 +39,13 @@ public class JpaWiringTest {
 
         Topic retrievedTopic = topicRepo.findById(testTopic.getId()).get();
 
-        assertThat(retrievedTopic.getPosts()).containsExactlyInAnyOrder(testPost1, testPost2);
+        assertThat(retrievedTopic.getPost()).containsExactlyInAnyOrder(testPost1, testPost2);
+    }
+    @Test
+    public void postShouldHaveAHashtag() {
+        Hashtag testHashtag1 = new Hashtag("scary");
+//        hashtagRepo.save(testHashtag1);
+        Hashtag testHashtag2 = new Hashtag("funny");
+//        hashtagRepo.save(testHashtag2);
     }
 }

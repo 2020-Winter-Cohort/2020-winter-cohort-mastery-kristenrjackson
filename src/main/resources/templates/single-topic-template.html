@@ -25,7 +25,7 @@
                 Topic
             </h2>
             <nav class="main-content__nav posts__nav">
-                <div th:each="post: ${topic.posts}">
+                <div th:each="post: ${topic.post}">
                     <a th:text="${post.title}" th:href="'/posts/'+${post.id}" href="#"
                        class="posts__nav-link"></a>
                 </div>

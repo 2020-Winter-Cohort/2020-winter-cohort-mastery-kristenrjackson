@@ -15,7 +15,8 @@ public class PostController {
     public PostController(PostStorage postStorage) {
         this.postStorage = postStorage;
     }
-@GetMapping("/{id}")
+
+    @GetMapping("/{id}")
     public String displaySinglePost(@PathVariable long id, Model model) {
         model.addAttribute("post", postStorage.retrievePostById(id));
         return "single-post-template";

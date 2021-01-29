@@ -1,26 +1,26 @@
 package com.survivingcodingbootcamp.blog.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
-@Entity
-public class Topic {
+/*@Entity*/
+public class Hashtag {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
-    private String hashtag;
-    @OneToMany(mappedBy = "topic")
+    @ManyToMany(mappedBy = "hashtag")
     private Collection<Post> post;
 
-    protected Topic() {
+    public Hashtag() {
+
     }
 
-    public Topic(String name) {
+    public Hashtag(String name, Post...post) {
         this.name = name;
+        this.post = List.of(post);
+
     }
 
     public Long getId() {
@@ -37,10 +37,7 @@ public class Topic {
 
     @Override
     public String toString() {
-        return "Topic{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return name;
     }
 
     @Override
@@ -48,10 +45,10 @@ public class Topic {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Topic topic = (Topic) o;
+        Hashtag hashtag = (Hashtag) o;
 
-        if (id != null ? !id.equals(topic.id) : topic.id != null) return false;
-        return name != null ? name.equals(topic.name) : topic.name == null;
+        if (id != null ? !id.equals(hashtag.id) : hashtag.id != null) return false;
+        return name != null ? name.equals(hashtag.name) : hashtag.name == null;
     }
 
     @Override
