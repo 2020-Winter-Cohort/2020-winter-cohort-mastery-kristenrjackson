@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 
-/*@Entity*/
+@Entity
 public class Hashtag {
     @Id
     @GeneratedValue

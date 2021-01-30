@@ -1,6 +1,8 @@
 package com.survivingcodingbootcamp.blog.model;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Post {
@@ -13,17 +15,19 @@ public class Post {
     private Topic topic;
     @Lob
     private String content;
-    private String hashtag;
+//    private String hashtag;
+    @ManyToMany()
+    private Collection<Hashtag> hashtag;
 
     protected Post() {
     }
 
-    public Post(String title, String author, Topic topic, String content, String hashtag) {
+    public Post(String title, String author, Topic topic, String content, Hashtag...hashtags) {
         this.title = title;
         this.author = author;
         this.topic = topic;
         this.content = content;
-        this.hashtag = hashtag;
+        this.hashtag = List.of(hashtags); // This may not be needed. Comes into play when I map the PostController.
     }
 
     public Long getId() {
@@ -44,7 +48,11 @@ public class Post {
         return content;
     }
 
-    public String getHashtag() { return hashtag; }
+    public void addHashtag(Hashtag inHashtag) {
+        hashtag.add(inHashtag);
+    }
+
+    public Collection<Hashtag> getHashtag() { return hashtag; }
 
     @Override
     public String toString() {

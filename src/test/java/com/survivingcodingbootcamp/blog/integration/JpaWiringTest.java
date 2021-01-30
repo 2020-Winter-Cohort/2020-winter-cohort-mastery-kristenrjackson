@@ -4,6 +4,7 @@ import com.survivingcodingbootcamp.blog.model.Hashtag;
 import com.survivingcodingbootcamp.blog.model.Post;
 import com.survivingcodingbootcamp.blog.model.Topic;
 //import com.survivingcodingbootcamp.blog.storage.repository.HashtagRepository;
+import com.survivingcodingbootcamp.blog.storage.repository.HashtagRepository;
 import com.survivingcodingbootcamp.blog.storage.repository.PostRepository;
 import com.survivingcodingbootcamp.blog.storage.repository.TopicRepository;
 import org.junit.jupiter.api.Test;
@@ -15,8 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 public class JpaWiringTest {
-//    @Autowired
-//    HashtagRepository hashtagRepo;
+    @Autowired
+    HashtagRepository hashtagRepo;
     @Autowired
     private TopicRepository topicRepo;
     @Autowired
@@ -28,10 +29,12 @@ public class JpaWiringTest {
     public void postsShouldHaveATopic() {
         Topic testTopic = new Topic("Name");
         topicRepo.save(testTopic);
+        Hashtag testHashtag = new Hashtag("scary");
+        hashtagRepo.save(testHashtag);
 
-        Post testPost1 = new Post("Title", "An author", testTopic, "Content", "fascinating");
+        Post testPost1 = new Post("Title", "An author", testTopic, "Content", testHashtag);
         postRepo.save(testPost1);
-        Post testPost2 = new Post("Another Title", "Another author", testTopic, "Content", "riveting");
+        Post testPost2 = new Post("Another Title", "Another author", testTopic, "Content", testHashtag);
         postRepo.save(testPost2);
 
         entityManager.flush();
@@ -44,8 +47,8 @@ public class JpaWiringTest {
     @Test
     public void postShouldHaveAHashtag() {
         Hashtag testHashtag1 = new Hashtag("scary");
-//        hashtagRepo.save(testHashtag1);
+        hashtagRepo.save(testHashtag1);
         Hashtag testHashtag2 = new Hashtag("funny");
-//        hashtagRepo.save(testHashtag2);
+        hashtagRepo.save(testHashtag2);
     }
 }

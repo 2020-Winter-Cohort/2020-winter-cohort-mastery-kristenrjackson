@@ -10,7 +10,9 @@ public interface HashtagStorage {
 
     Iterable<Hashtag> retrieveAllHashtags();
 
-    Hashtag retrieveHashtagById(long l);
+    Hashtag retrieveHashtagById(long id);
+
+//    Hashtag retrieveHashtagByName(String name);
 
     void save(Hashtag hashtagToAdd);
 }
