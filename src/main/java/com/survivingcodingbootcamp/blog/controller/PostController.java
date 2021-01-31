@@ -30,7 +30,7 @@ public class PostController {
     }
 
     @PostMapping("/addPost/{id}")
-    public String addPost(@PathVariable long id, @RequestParam String title, @RequestParam String author, @RequestParam String content) {
+    public String addPost(@PathVariable long id, @RequestParam String title, @RequestParam String author, @RequestParam String content, String hashtag) {
         Topic topic1 = topicStorage.retrieveSingleTopic(id);
         Post addedPost = new Post(title, author, topic1, content);
         postStorage.save(addedPost);

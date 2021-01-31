@@ -62,7 +62,6 @@ public class Post {
                 ", author='" + author + '\'' +
                 ", topic=" + topic +
                 ", content='" + content + '\'' +
-                ", hashtag='" + hashtag + '\'' +
                 '}';
     }
 
@@ -77,8 +76,7 @@ public class Post {
         if (title != null ? !title.equals(post.title) : post.title != null) return false;
         if (author != null ? !author.equals(post.author) : post.author != null) return false;
         if (topic != null ? !topic.equals(post.topic) : post.topic != null) return false;
-        if (content != null ? !content.equals(post.content) : post.content != null) return false;
-        return hashtag != null ? hashtag.equals(post.hashtag) : post.hashtag == null;
+        return content != null ? content.equals(post.content) : post.content == null;
     }
 
     @Override
@@ -88,7 +86,6 @@ public class Post {
         result = 31 * result + (author != null ? author.hashCode() : 0);
         result = 31 * result + (topic != null ? topic.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (hashtag != null ? hashtag.hashCode() : 0);
         return result;
     }
 }
