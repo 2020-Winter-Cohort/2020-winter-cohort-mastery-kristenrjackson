@@ -13,29 +13,56 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/posts")
 public class PostController {
     private PostStorage postStorage;
-    private TopicStorage topicStorage;
 
-    public PostController(PostStorage postStorage, TopicStorage topicStorage) {
+    public PostController(PostStorage postStorage) {
         this.postStorage = postStorage;
-        this.topicStorage = topicStorage;
     }
 
-    @GetMapping("/{id}") // Eventually add more than one thing to the model.
+    @GetMapping("/{id}")
     public String displaySinglePost(@PathVariable long id, Model model) {
-        model.addAttribute("post", postStorage.retrievePostById(id)); // Before last parentheses, add .getHashtags or .getComments if I need something else to go here.
-        //model.addAttribute("hashtag", postStorage.retrievePostById(id).getHashtags);
-        model.addAttribute("hashtag", postStorage.retrievePostById(id).getHashtag());
-        //model.addAttribute("comment", postStorage.retrievePostById(id).getComments); Should below be "comment or content"?
+        model.addAttribute("post", postStorage.retrievePostById(id));
         return "single-post-template";
     }
 
     @PostMapping("/addPost/{id}")
     public String addPost(@PathVariable long id, @RequestParam String title, @RequestParam String author, @RequestParam String content, String hashtag) {
-        Topic topic1 = topicStorage.retrieveSingleTopic(id);
-        Post addedPost = new Post(title, author, topic1, content);
-        postStorage.save(addedPost);
-        return "redirect:/posts/" + addedPost.getId();
+        return "";
     }
+}
+
+
+// @Controller
+// @RequestMapping("/posts")
+// public class PostController {
+//    private PostStorage postStorage;
+//    private TopicStorage topicStorage;
+//
+//    public PostController(PostStorage postStorage, TopicStorage topicStorage) {
+//        this.postStorage = postStorage;
+//        this.topicStorage = topicStorage;
+//    }
+//
+//    @GetMapping("/{id}") // Eventually add more than one thing to the model.
+//    // public String displaySinglePost(@PathVariable long id, Model model) {
+//        public String displaySinglePost(@PathVariable long id, Model model) {
+//            model.addAttribute("post", postStorage.retrievePostById(id));
+//            return "single-post-template";
+//        }
+//         model.addAttribute("post", postStorage.retrievePostById(id)); // Before last parentheses, add .getHashtags or .getComments if I need something else to go here.
+//         model.addAttribute("hashtag", postStorage.retrievePostById(id).getHashtags);
+//         model.addAttribute("hashtag", postStorage.retrievePostById(id).getHashtags());
+//         model.addAttribute("comment", postStorage.retrievePostById(id).getComments); Should below be "comment or content"?
+//         return "single-post-template";
+//     }
+//
+//    @PostMapping("/addPost/{id}")
+//    public String addPost(@PathVariable long id, @RequestParam String title, @RequestParam String author, String content, String hashtag) {
+//        Topic topic1 = topicStorage.retrieveSingleTopic(id);
+//        Post addedPost = new Post(title, author, topic1, content, hashtag);
+//        postStorage.save(addedPost);
+//        return "redirect:/posts/" + addedPost.getId();
+//            return "";
+//    }
 
     // Include a post mapping dedicated to adding a new post. Include "/addPost/{id}". Id needs to be a post ID. In this mapping, I need to include a model, a path variable, and request param (title, author, content).
 
@@ -45,5 +72,4 @@ public class PostController {
 
     // For PostMapping - Post newPost...look at constructor in the model class.
 
-
-}
+// }

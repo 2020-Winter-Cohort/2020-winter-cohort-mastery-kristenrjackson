@@ -25,7 +25,7 @@ public class Populator implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String...args) throws Exception {
 
         Hashtag hashtag1 = new Hashtag("fascinating");
         hashtagStorage.save(hashtag1);

@@ -55,7 +55,7 @@ public class WebMvcLayerTest {
                 .andExpect(model().attributeExists("post"))
                 .andExpect(model().attribute("post", testPost))
                 .andExpect(model().attributeExists("hashtag"))
-                .andExpect(model().attribute("post", testPost.getHashtag()))
+                .andExpect(model().attribute("post", testPost.getHashtags()))
                 .andExpect(view().name("single-post-template"));
     }
 }

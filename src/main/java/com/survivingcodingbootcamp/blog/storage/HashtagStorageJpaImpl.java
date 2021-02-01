@@ -1,4 +1,4 @@
-package com.survivingcodingbootcamp.blog;
+package com.survivingcodingbootcamp.blog.storage;
 
 import com.survivingcodingbootcamp.blog.model.Hashtag;
 import com.survivingcodingbootcamp.blog.storage.HashtagStorage;

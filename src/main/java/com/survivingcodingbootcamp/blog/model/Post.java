@@ -16,8 +16,8 @@ public class Post {
     @Lob
     private String content;
 //    private String hashtag;
-    @ManyToMany()
-    private Collection<Hashtag> hashtag;
+    @ManyToMany
+    private Collection<Hashtag> hashtags;
 
     protected Post() {
     }
@@ -27,7 +27,7 @@ public class Post {
         this.author = author;
         this.topic = topic;
         this.content = content;
-        this.hashtag = List.of(hashtags); // This may not be needed. Comes into play when I map the PostController.
+        this.hashtags = List.of(hashtags); // This may not be needed. Comes into play when I map the PostController.
     }
 
     public Long getId() {
@@ -49,10 +49,10 @@ public class Post {
     }
 
     public void addHashtag(Hashtag inHashtag) {
-        hashtag.add(inHashtag);
+        hashtags.add(inHashtag);
     }
 
-    public Collection<Hashtag> getHashtag() { return hashtag; }
+    public Collection<Hashtag> getHashtags() { return hashtags; }
 
     @Override
     public String toString() {

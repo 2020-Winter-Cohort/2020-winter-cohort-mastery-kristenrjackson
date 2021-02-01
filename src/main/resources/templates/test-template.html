@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${hashtag.name}">Hashtag</title>
+    <link rel="icon" href="/assets/icon.png">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1 class="header__title">Surviving Coding Boot Camp</h1>
+        <nav class="header__nav">
+            <div class="header__nav-item"><a href="/" class="header__nav-link">Home</a></div>
+            <div class="header__nav-item"><a href="/hashtags" class="header__nav-link">Hashtags</a></div>
+        </nav>
+    </header>
+    <main class="main-content">
+        <section class="postInHash">
+            <nav class = "main-content__nav posts__nav">
+                <h2 th:each="post: ${hashtag.getPost()}">
+                    <a th:text="${post.title}" th:href="'/posts/'+${post.id}" href="#"
+                       class="posts__nav-link">Post</a>
+                </h2>
+            </nav>
+
+
+<!--Come back to this later...this is needed for posts (in the single-hastag-template)?            -->
+
+<!--<h3 class="post__topic-title main-content__topic-title"><a th:text="${hashtag.topic}" th:href="'/topics/'+${post.topic.id}" class="main-content__topic-link post__topic-link">Topic</a>-->
+<!--</h3>-->
+
+<!--            <h2 th:text="${topic.post.hashtag}" th:href="'\'s Posts'+${topic.post.hashtag}" class="main-content__topic-link post__topic-link">Topic</a>-->
+<!--            </h2>-->
+<!--            <h2 th:text="${post.hashtag}" th:href="'\'s Hashtags'+${post.hashtag}" class="main-content__topic-link post__topic-link">Post</a>-->
+<!--            </h2>-->
+<!--            <h3 th:text="${hashtag.name}" class="post__title main-content__topic-title">Hashtag Name</h3>-->
+<!--<p th:text="${post.content}" class="post__content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque blanditiis, aut quae fuga id quis ut.-->
+<!--    Eligendi necessitatibus blanditiis officia, odio deleniti natus molestiae fugiat ex quod vel aliquam illum.-->
+<!--</p>-->
+        </section>
+    </main>
+</div>
+
+</body>
+</html>

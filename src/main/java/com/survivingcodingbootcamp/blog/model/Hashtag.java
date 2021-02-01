@@ -8,22 +8,22 @@ import java.util.List;
 public class Hashtag {
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
     private String name;
-    @ManyToMany(mappedBy = "hashtag")
+    @ManyToMany(mappedBy = "hashtags")
     private Collection<Post> post;
 
     public Hashtag() {
 
     }
 
-    public Hashtag(String name, Post...post) {
+    public Hashtag(String name) { //, Post...post
         this.name = name;
-        this.post = List.of(post);
+//        this.post = List.of(post);
 
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -35,9 +35,14 @@ public class Hashtag {
         return post;
     }
 
+//    public void addPost(Post inPost) {this.post.add(inPost); }
+
     @Override
     public String toString() {
-        return name;
+        return "Hashtag{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 
     @Override
@@ -47,13 +52,13 @@ public class Hashtag {
 
         Hashtag hashtag = (Hashtag) o;
 
-        if (id != null ? !id.equals(hashtag.id) : hashtag.id != null) return false;
+        if (id != hashtag.id) return false;
         return name != null ? name.equals(hashtag.name) : hashtag.name == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
