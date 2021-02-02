@@ -25,10 +25,26 @@
                 Topic
             </h2>
             <nav class="main-content__nav posts__nav">
-                <div th:each="post: ${topic.posts}">
+                <div th:each="post: ${topic.post}">
                     <a th:text="${post.title}" th:href="'/posts/'+${post.id}" href="#"
                        class="posts__nav-link"></a>
                 </div>
+                <form action="/posts/addPost"  method="POST">
+                    <div class = "field"><br>
+                        <h3>Add Post</h3>
+                        <input type="hidden" id="newPost" name="newPost">
+                        <input type="hidden" id="topicId" name="topicId" th:value="${topic.id}"><br>
+                        <label for="title">Title</label><br>
+                        <input type="text" id="title" name="title"><br>
+                        <label for="title">Author</label><br>
+                        <input type="text" id="author" name="author"><br>
+                        <label for="title">Post Content</label><br>
+                        <textarea type="text" id="content" name="content"></textarea>
+
+                    </div>
+                    <button type="submit">Add Post</button>
+
+                </form>
             </nav>
         </section>
     </main>
