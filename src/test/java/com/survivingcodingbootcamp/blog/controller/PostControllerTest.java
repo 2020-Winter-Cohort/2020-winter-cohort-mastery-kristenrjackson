@@ -24,7 +24,7 @@ public class PostControllerTest {
     void setUp() {
         PostStorage postStorage = mock(PostStorage.class);
         TopicStorage topicStorage = mock(TopicStorage.class);
-        underTest = new PostController(postStorage); //, topicStorage
+        underTest = new PostController(postStorage, topicStorage);
         model = mock(Model.class);
         testPost = mock(Post.class);
         when(postStorage.retrievePostById(1L)).thenReturn(testPost);

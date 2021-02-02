@@ -66,7 +66,5 @@ public class Populator implements CommandLineRunner {
         topicStorage.save(topic3);
         Topic topic4 = new Topic("Object Oriented Programming and You");
         topicStorage.save(topic4);
-
     }
-
 }

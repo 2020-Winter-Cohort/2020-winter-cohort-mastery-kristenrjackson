@@ -29,7 +29,7 @@
                 <a th:text="${hashtag.name}" th:href=" '/hashtags/' + ${hashtag.id}">Hashtag</a></h2>
                 <p th:text="${post.content}" class="post__content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque blanditiis, aut quae fuga id quis ut.
                     Eligendi necessitatibus blanditiis officia, odio deleniti natus molestiae fugiat ex quod vel aliquam illum.
-                </p>
+                </p><br>
                 <form action="/hashtags/addHashtag"  method="POST">
                     <div class = "field">
                         <p>Add Hashtag</p>
@@ -38,14 +38,8 @@
                         <button type="submit">Add Hashtag</button>
                     </div>
                 </form>
-
             </section>
-<!--            <p class="addedHashtag" th:each="hashtag:${hashtag}"><a th:text="${hashtag.id} + ' ~' + ${hashtag.name}"></a> </p>-->
         </main>
     </div>
-
 </body>
-
 </html>
-
-<!--main-content__topic-author-->

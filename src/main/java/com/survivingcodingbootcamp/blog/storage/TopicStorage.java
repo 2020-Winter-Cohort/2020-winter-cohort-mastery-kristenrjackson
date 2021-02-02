@@ -1,5 +1,6 @@
 package com.survivingcodingbootcamp.blog.storage;
 
+import com.survivingcodingbootcamp.blog.model.Post;
 import com.survivingcodingbootcamp.blog.model.Topic;
 import org.springframework.stereotype.Service;
 
@@ -10,4 +11,5 @@ public interface TopicStorage {
     void save(Topic topicToSave);
 
     Topic retrieveSingleTopic(long id);
-}
+
+    void addPostToTopic(long id, Post postToAdd);}

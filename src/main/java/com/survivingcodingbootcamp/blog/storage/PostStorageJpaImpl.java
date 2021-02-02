@@ -28,6 +28,10 @@ public class PostStorageJpaImpl implements PostStorage {
         postRepo.save(postToAdd);
     }
 
+    public void addPostToTopic(long id, Post postToAdd) {
+        postRepo.save(postToAdd);
+    }
+
     @Override
     public void addHashtagToPost(long l, Hashtag hashtagToAdd) {
         Post newPost = retrievePostById(l);
